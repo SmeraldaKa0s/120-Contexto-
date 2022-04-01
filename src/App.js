@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Nav from "./components/Nav"
+import Footer from "./components/Footer"
+import Main from "./components/Main"
+import Context from "./context/Context"
+import { useState } from 'react';
 
-function App() {
+
+const App = () => {
+  const [user, setUser] = useState({})
+  const [theme, setTheme] = useState({})
+  const [languaje, setLanguage] = useState("es")
+
+
+  const context = {
+    user: user, 
+    setUser: setUser,
+    theme:{
+  
+    },
+    language: languaje,
+    setLanguage: setLanguage 
+  
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     <Context.Provider value={context}> 
+     <Nav />
+     <Main />
+     <Footer />
+     </Context.Provider>
     </div>
   );
 }
